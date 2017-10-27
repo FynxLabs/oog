@@ -1,4 +1,4 @@
-package main
+package oog
 
 import (
     "encoding/json"
@@ -7,8 +7,8 @@ import (
     "github.com/gorilla/mux"
 )
 
-// fun main()
-func main() {
+// fun router()
+func router() {
     router := mux.NewRouter()
     // chat routes
     router.HandleFunc("/v1/attachment", chat_attachment).Methods("POST")
