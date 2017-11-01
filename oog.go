@@ -2,9 +2,15 @@ package oog
 
 import (
     "os"
+    "log"
 )
 
-// fun main()
-func main() {
+
+var (
+
+)
+
+// fun oog()
+func oog() {
 
 }
