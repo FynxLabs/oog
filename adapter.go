@@ -7,5 +7,6 @@ import (
 )
 
 // fun adapter()
-func adapter() {
+func adapter()
+
 }
