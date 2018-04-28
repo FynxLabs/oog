@@ -1,9 +1,4 @@
-package oog
-
-import (
-    "os"
-    "log"
-)
+package main
 
 // fun router()
 func plugin() {

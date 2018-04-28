@@ -1,9 +1,4 @@
-package oog
-
-import (
-	"log"
-	"os"
-)
+package main
 
 // Base Functions/Commands that come with OOG
 func ping() {

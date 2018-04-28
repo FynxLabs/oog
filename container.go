@@ -1,16 +1,12 @@
-package oog
+package main
 
-import (
-    "os"
-    "log"
-    "fmt"
-	"github.com/fsouza/go-dockerclient"
-)
+// import (
+// 	"github.com/fsouza/go-dockerclient"
+// )
 
-// fun container()
-func container() {
-  // create client
-  client, _ := docker.NewClientFromEnv()
-	// use client
-	}
-}
+// // fun container()
+// func container() {
+// 	// create client
+// 	client, _ := docker.NewClientFromEnv()
+// 	// use client
+// }

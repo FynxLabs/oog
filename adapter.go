@@ -1,12 +1,12 @@
-package oog
+package main
 
-import (
-    "encoding/json"
-    "log"
-    "net/http"
-)
+// import "github.com/gin-gonic/gin"
 
-// fun adapter()
-func adapter()
-
-}
+// // fun adapter()
+// func adapter() {
+// 	router.GET("/ping", func(c *gin.Context) {
+// 		c.JSON(200, gin.H{
+// 			"message": "pong",
+// 		})
+// 	})
+// }
