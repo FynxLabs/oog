@@ -1,4 +1,4 @@
-package main
+package botcore
 
 // fun router()
 func plugin() {

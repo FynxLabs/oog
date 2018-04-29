@@ -1,4 +1,4 @@
-package main
+package botcore
 
 // import "github.com/gin-gonic/gin"
 
