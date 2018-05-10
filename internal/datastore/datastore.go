@@ -7,11 +7,11 @@ import (
 	"github.com/boltdb/bolt"
 )
 
-// Default brain session
+// Load Brain
 func Load() {
-	// Open the my.db data file in your current directory.
+	// Open the bolt.db data file in your brain directory.
 	// It will be created if it doesn't exist.
-	db, err := bolt.Open("oog_brain.db", 0600, &bolt.Options{Timeout: 1 * time.Second})
+	db, err := bolt.Open("./brain/bolt.db", 0600, &bolt.Options{Timeout: 1 * time.Second})
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -19,13 +19,18 @@ func Load() {
 }
 
 // Save - Save stuff to datastore/brain
-func Save() {
+func Save(store string, key string, value string) {
 }
 
 // Delete - Delete stuff from datastore/brain
-func Delete() {
+func Delete(store string, key string) {
 }
 
 // Query - Find stuff in datastore/brain
-func Query() {
+func Query(values ...string) {
+	if len(values) == 2 {
+
+	} else {
+
+	}
 }

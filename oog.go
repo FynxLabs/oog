@@ -30,8 +30,8 @@ func main() {
 	// Bot specific routes
 	botRG := router.Group("/v1/bot")
 	{
-		botRG.POST("/stream", stream)        // Accept all incoming messages and send to stream function to sort
-		botRG.POST("/reload", plugin.Load()) // Reload all plugins
+		botRG.POST("/stream", stream)      // Accept all incoming messages and send to stream function to sort
+		botRG.POST("/reload", plugin.Load) // Reload all plugins
 		botRG.GET("/ping", func(c *gin.Context) {
 			c.JSON(200, gin.H{
 				"message": "pong",
