@@ -1,15 +1,13 @@
-package main
+package cmd
 
 import (
-	"strings"
-
 	"github.com/fynxlabs/oog/internal/adapter"
 	"github.com/fynxlabs/oog/internal/datastore"
 	"github.com/fynxlabs/oog/internal/plugin"
 	"github.com/gin-gonic/gin"
 )
 
-func run() {
+func main() {
 	router := gin.Default()
 	client := adapter.Load()  // Create a new client by connecting via client
 	brain := datastore.Load() // Load up a brain
@@ -41,18 +39,4 @@ func run() {
 		brainRG.POST("/query", brain.Query())   // Endpoint to query selected datastore
 	}
 	router.Run() // listen and serve on 0.0.0.0:8080
-}
-
-// Assign context to data and forward all messages to listener
-func stream(data *gin.Context) {
-	switch {
-	case strings.Contains(data.Param("text"), "Ping"):
-		adapter.Message("plain", "ping")
-	case strings.Contains(data.Param("text"), "Help"):
-		plugin.HelpList()
-	case strings.Contains(data.Param("text"), "Reload"):
-		plugin.Load()
-	default:
-		plugin.Exec()
-	}
 }
