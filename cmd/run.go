@@ -1,9 +1,9 @@
 package cmd
 
 import (
-	"github.com/fynxlabs/oog/internal/adapter"
-	"github.com/fynxlabs/oog/internal/datastore"
-	"github.com/fynxlabs/oog/internal/plugin"
+	"github.com/fynxlabs/oog/lib/adapter"
+	"github.com/fynxlabs/oog/lib/datastore"
+	"github.com/fynxlabs/oog/lib/plugin"
 	"github.com/gin-gonic/gin"
 )
 
