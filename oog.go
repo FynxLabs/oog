@@ -3,9 +3,9 @@ package main
 import (
 	"strings"
 
-	"internal/adapter"
-	"internal/datastore"
-	"internal/plugin"
+	"lib/adapter"
+	"lib/datastore"
+	"lib/plugin"
 
 	"github.com/gin-gonic/gin"
 )
