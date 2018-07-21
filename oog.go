@@ -3,9 +3,9 @@ package main
 import (
 	"strings"
 
-	"lib/adapter"
-	"lib/datastore"
-	"lib/plugin"
+	"github.com/fynxlabs/oog/lib/adapter"
+	"github.com/fynxlabs/oog/lib/datastore"
+	"github.com/fynxlabs/oog/lib/plugin"
 
 	"github.com/gin-gonic/gin"
 )
