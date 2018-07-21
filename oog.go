@@ -3,9 +3,10 @@ package main
 import (
 	"strings"
 
-	"github.com/fynxlabs/oog/internal/adapter"
-	"github.com/fynxlabs/oog/internal/datastore"
-	"github.com/fynxlabs/oog/internal/plugin"
+	"internal/adapter"
+	"internal/datastore"
+	"internal/plugin"
+
 	"github.com/gin-gonic/gin"
 )
 
