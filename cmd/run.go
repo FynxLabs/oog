@@ -1,42 +1,5 @@
 package cmd
 
-import (
-	"github.com/fynxlabs/oog/lib/adapter"
-	"github.com/fynxlabs/oog/lib/datastore"
-	"github.com/fynxlabs/oog/lib/plugin"
-	"github.com/gin-gonic/gin"
-)
-
 func main() {
-	router := gin.Default()
-	client := adapter.Load()  // Create a new client by connecting via client
-	brain := datastore.Load() // Load up a brain
 
-	// Bot specific routes
-	botRG := router.Group("/v1/bot")
-	{
-		botRG.POST("/stream", stream)      // Accept all incoming messages and send to stream function to sort
-		botRG.POST("/reload", plugin.Load) // Reload all plugins
-		botRG.GET("/ping", func(c *gin.Context) {
-			c.JSON(200, gin.H{
-				"message": "pong",
-			})
-		})
-	}
-
-	// Adapter specific routes
-	adapterRG := router.Group("/v1/adapter")
-	{
-		adapterRG.POST("/channel", client.Channel()) // Endpoint to interact with Channels/Rooms
-		adapterRG.POST("/message", client.Message()) // Endpoint to send message via client
-	}
-
-	// Brain specific routes
-	brainRG := router.Group("/v1/brain")
-	{
-		brainRG.POST("/save", brain.Save())     // Endpoint to save data to selected datastore
-		brainRG.POST("/delete", brain.Delete()) // Endpoint to delete data from selected datastore
-		brainRG.POST("/query", brain.Query())   // Endpoint to query selected datastore
-	}
-	router.Run() // listen and serve on 0.0.0.0:8080
 }
