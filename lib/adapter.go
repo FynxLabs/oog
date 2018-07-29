@@ -1,9 +1,9 @@
-package adapter
+package botcore
 
 import "gopkg.in/resty.v1"
 
 // Load - adapter loader
-func Load() {
+func chatClient() {
 	// Load up a adapter from ooglins
 }
 
@@ -13,6 +13,7 @@ func Message(adapterURL string, msgtype string, text string, attachment map[stri
 	payload["type"] = msgtype
 	payload["text"] = text
 	payload["attachment"] = attachment
+
 	resp, err := resty.R().
 		SetHeader("Content-Type", "application/json").
 		SetBody(payload).
