@@ -9,22 +9,39 @@ import (
 	"github.com/spf13/viper"
 )
 
-func init() {
-	cobra.OnInitialize(initConfig)
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.cobra.yaml)")
-	rootCmd.PersistentFlags().StringVarP(&projectBase, "projectbase", "b", "", "base project directory eg. github.com/spf13/")
-	rootCmd.PersistentFlags().StringP("author", "a", "YOUR NAME", "Author name for copyright attribution")
-	rootCmd.PersistentFlags().StringVarP(&userLicense, "license", "l", "", "Name of license for the project (can provide `licensetext` in config)")
-	rootCmd.PersistentFlags().Bool("viper", true, "Use Viper for configuration")
-	viper.BindPFlag("author", rootCmd.PersistentFlags().Lookup("author"))
-	viper.BindPFlag("projectbase", rootCmd.PersistentFlags().Lookup("projectbase"))
-	viper.BindPFlag("useViper", rootCmd.PersistentFlags().Lookup("viper"))
-	viper.SetDefault("author", "Fynx Labs")
-	viper.SetDefault("license", "apache")
+var cfgFile string
+
+// rootCmd represents the base command when called without any subcommands
+var rootCmd = &cobra.Command{
+	Use:   "OOG",
+	Short: "CLI to manage OOG",
+	Long:  `This CLI is used to start, stop, and control OOG`,
 }
 
-func initConfig() {
+// Execute adds all child commands to the root command and sets flags appropriately.
+// This is called by main.main(). It only needs to happen once to the rootCmd.
+func Execute() {
+	if err := rootCmd.Execute(); err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+}
 
+func init() {
+	cobra.OnInitialize(initConfig)
+
+	// Here you will define your flags and configuration settings.
+	// Cobra supports persistent flags, which, if defined here,
+	// will be global for your application.
+	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.oog)")
+	// rootCmd.PersistentFlags().StringP("test", "t", "", "t to use")
+	// viper.BindPFlag("test", rootCmd.PersistentFlags().Lookup("test"))
+	// viper.SetDefault("author", "Fynx Labs")
+	// viper.SetDefault("license", "apache")
+}
+
+// initConfig reads in config file and ENV variables if set.
+func initConfig() {
 	// Don't forget to read config either from cfgFile or from home directory!
 	if cfgFile != "" {
 		// Use config file from the flag.
@@ -44,8 +61,12 @@ func initConfig() {
 		viper.AddConfigPath(".")
 	}
 
+	viper.AutomaticEnv() // read in environment variables that match
+
 	if err := viper.ReadInConfig(); err != nil {
 		fmt.Println("Can't read config:", err)
 		os.Exit(1)
 	}
+
+	fmt.Println("Using config file:", viper.ConfigFileUsed())
 }

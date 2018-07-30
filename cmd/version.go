@@ -15,6 +15,6 @@ var versionCmd = &cobra.Command{
 	Short: "Print the version number of OOG",
 	Long:  `All software has versions. This is OOG`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("OOG - %s" + viper.get("version"))
+		fmt.Println("OOG")
 	},
 }

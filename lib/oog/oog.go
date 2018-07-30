@@ -4,7 +4,9 @@ import (
 	"strings"
 
 	"github.com/gin-gonic/gin"
-	"github.com/rs/zerolog/log"
+	homedir "github.com/mitchellh/go-homedir"
+	log "github.com/rs/zerolog/log"
+	"github.com/spf13/viper"
 )
 
 type adapterContext struct {
@@ -16,7 +18,7 @@ type adapterContext struct {
 }
 
 type adapterAttachment struct {
-	attachment map[string]string `json:"attachment,omitempty"`
+	attachment map[string]string
 }
 
 type adapterPayload struct {
@@ -32,11 +34,38 @@ type channelPayload struct {
 	URL     string `json:"url,omitempty"`
 }
 
-func run() {
+func newConfig(cfgFile string) {
+	// Don't forget to read config either from cfgFile or from home directory!
+	if cfgFile != "" {
+		// Use config file from the flag.
+		viper.SetConfigFile(cfgFile)
+	} else {
+		// Find home directory.
+		home, err := homedir.Dir()
+		if err != nil {
+			log.Error().Err(err).Msgf("Can't find homedir: %s", err)
+			panic(err)
+		}
 
-	newConfig() // Loads new viper config found via config.go
+		// Search config in home and other directories with name ".oog" (without extension).
+		viper.SetConfigName(".oog")
+		viper.AddConfigPath(home)
+		viper.AddConfigPath("/opt/oog/conf/")
+		viper.AddConfigPath(".")
+	}
+
+	viper.AutomaticEnv() // read in environment variables that match
+
+	if err := viper.ReadInConfig(); err != nil {
+		log.Error().Err(err).Msgf("Can't read config: %s", err)
+		panic(err)
+	}
+
 	log.Debug().Msg("Loaded new config")
+}
 
+func run(cfgFile string) {
+	newConfig(cfgFile)
 	router := gin.Default()
 
 	log := log.With().
@@ -109,7 +138,6 @@ func run() {
 
 // Assign context to data and forward all messages to listener
 func stream(data *gin.Context) {
-
 	log := log.With().
 		Str("component", "container").
 		Logger()
