@@ -1,10 +1,6 @@
-package botcore
+package oog
 
 // Base Functions/Commands that come with OOG
-func ping() {
-
-}
-
 func help() {
 
 }

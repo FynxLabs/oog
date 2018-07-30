@@ -19,7 +19,7 @@ func init() {
 	viper.BindPFlag("author", rootCmd.PersistentFlags().Lookup("author"))
 	viper.BindPFlag("projectbase", rootCmd.PersistentFlags().Lookup("projectbase"))
 	viper.BindPFlag("useViper", rootCmd.PersistentFlags().Lookup("viper"))
-	viper.SetDefault("author", "NAME HERE <EMAIL ADDRESS>")
+	viper.SetDefault("author", "Fynx Labs")
 	viper.SetDefault("license", "apache")
 }
 
